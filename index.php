@@ -6,10 +6,10 @@
  */
 
 // we include the header file by using the WP function which is Loads header template 
- get_headers();
+ get_header();
 ?>
 
-<div class="content">Content</div>
+   <div class="content">Content</div>
 
 <?php
 

@@ -17,4 +17,7 @@
     <?php wp_head(); ?>
 </head>
 <body>
+    
+<!-- This function allows developers to add content to the beginning of the body tag. -->
+    <?php wp_body_open(); ?>
     <header>This is Header</header>

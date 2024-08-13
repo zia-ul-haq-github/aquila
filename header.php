@@ -19,5 +19,11 @@
 <body>
     
 <!-- This function allows developers to add content to the beginning of the body tag. -->
-    <?php wp_body_open(); ?>
+    <?php 
+
+    // check the compatiblity if the function is exeict then call the wp_body_open function
+        if(function_exists('wp_body_open')) {
+            wp_body_open(); 
+        }
+    ?>
     <header>This is Header</header>

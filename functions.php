@@ -5,6 +5,7 @@
  * @package Aquila
  */
 
+// create a constant for root directoy
 if(!defined('AQULIA_DIR_PATH')) {
    define('AQULIA_DIR_PATH', untrailingslashit(get_template_directory()));
 }

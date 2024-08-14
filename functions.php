@@ -5,8 +5,12 @@
  * @package Aquila
  */
 
-//  print_r(filemtime(get_template_directory() . '/style.css'));
+if(!defined('AQULIA_DIR_PATH')) {
+   define('AQULIA_DIR_PATH', untrailingslashit(get_template_directory()));
+}
  
+require_once AQULIA_DIR_PATH . '/inc/helpers/autoloader.php';
+
  function aquila_enqueue_scripts() {
 
     /*include the stylesheet and js file with dynamic way

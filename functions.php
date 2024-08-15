@@ -6,11 +6,21 @@
  */
 
 // create a constant for root directoy
-if(!defined('AQULIA_DIR_PATH')) {
-   define('AQULIA_DIR_PATH', untrailingslashit(get_template_directory()));
+if ( ! defined( 'AQUILA_DIR_PATH' ) ) {
+	define( 'AQUILA_DIR_PATH', untrailingslashit( get_template_directory() ) );
 }
  
-require_once AQULIA_DIR_PATH . '/inc/helpers/autoloader.php';
+// echo '<pre>';
+// print_r(AQULIA_DIR_PATH);
+// wp_die();
+
+require_once AQUILA_DIR_PATH . '/inc/helpers/autoloader.php';
+
+function aquila_get_theme_instance() {
+   \AQUILA_THEME\Inc\AQUILA_THEME::get_instance();
+}
+
+aquila_get_theme_instance();
 
  function aquila_enqueue_scripts() {
 

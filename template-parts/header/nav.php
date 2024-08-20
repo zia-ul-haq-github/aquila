@@ -46,3 +46,12 @@
     </form>
   </div>
 </nav>
+<?php
+// Display the custom menu on the frontend
+  wp_nav_menu(
+    [
+    'theme_location' => 'aquila-header-menu',
+    'container_class' => 'my_extra_menu_class',
+    ]
+  );
+?>

@@ -37,11 +37,42 @@ class AQUILA_THEME {
 		    'flex-width'           => true,
         ] );
 
-        add_theme_support( 'custom-background', [
-            'default-color' => '#fff',
+        add_theme_support( 'custom-background', 
+            ['default-color' => '#fff',
             'default-image' => '',
-            'default-repeat'=> 'no-repeat',
-        ] );
+            'default-repeat'=> 'no-repeat',] 
+        );
+
+    /** post thumbnail **/
+        add_theme_support( 'post-thumbnails' );
+
+    /** refresh widgest **/
+        add_theme_support( 'customize-selective-refersh-widgets' );
+
+    /** automatic feed link*/
+        add_theme_support( 'automatic-feed-links' );
+
+    /** HTML5 support **/
+        add_theme_support( 'html5', 
+
+            ['comment-list',
+            'comment-form',
+            'search-form', 
+            'gallery', 
+            'caption'
+             ] 
+        );
+
+     /**custom TinyMCE editor stylesheets.*/
+        add_theme_support( 'editor-style' );
+        add_theme_support( 'wp-block-styles' );
+        add_theme_support( 'align-wide' );
+
+        /** MAx width of contnet on the frontend */
+        global $content_width;
+        if(!isset($content_width)){
+            $content_width = 1240;
+        }
     }
 
 }

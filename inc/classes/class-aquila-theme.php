@@ -27,6 +27,7 @@ class AQUILA_THEME {
 
     public function setup_theme() {
 
+        // using wp core function to allow the title tage and custom logo and their propaties etc
         add_theme_support( 'title-tag' );
         add_theme_support( 'custom-logo', [
             'header-text'          => ['site-title', 'site-description'],
@@ -34,6 +35,12 @@ class AQUILA_THEME {
 		    'width'                => 400,
 		    'flex-height'          => true,
 		    'flex-width'           => true,
+        ] );
+
+        add_theme_support( 'custom-background', [
+            'default-color' => '#fff',
+            'default-image' => '',
+            'default-repeat'=> 'no-repeat',
         ] );
     }
 

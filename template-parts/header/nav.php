@@ -4,6 +4,19 @@
  * 
  * @package Aquila
  */
+
+//  call the object here
+ $menu_class = \AQUILA_THEME\Inc\Menus::get_instance();
+
+//  create a variable and call the function which argument is menu location 
+ $header_menu_id = $menu_class->get_menu_id('aquila-header-menu');
+
+//  we have a function where we can pass the menu id then it Retrieves all menu items.
+ $header_menus = wp_get_nav_menu_items($header_menu_id);
+
+ echo '<pre>';
+ print_r($header_menus);
+ wp_die();
 ?>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -48,10 +61,10 @@
 </nav>
 <?php
 // Display the custom menu on the frontend
-  wp_nav_menu(
-    [
-    'theme_location' => 'aquila-header-menu',
-    'container_class' => 'my_extra_menu_class',
-    ]
-  );
+  // wp_nav_menu(
+  //   [
+  //   'theme_location' => 'aquila-header-menu',
+  //   'container_class' => 'my_extra_menu_class',
+  //   ]
+  // );
 ?>

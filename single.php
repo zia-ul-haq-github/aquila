@@ -10,7 +10,7 @@
 ?>
 
    <div class="content">
-      <?php esc_html_e('Blog Content', 'aquila'); ?>
+      <?php esc_html_e('Single Post', 'aquila'); ?>
    </div>
 
 <?php

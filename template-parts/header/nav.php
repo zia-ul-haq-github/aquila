@@ -34,7 +34,7 @@
        * get child items in the $child_menu_item variable
       */
       if( !empty($header_menus) && is_array($header_menus) ) {
-    ?>
+      ?>
       <ul class="navbar-nav mr-auto">
         <?php
           foreach( $header_menus as $menu_item ) {
@@ -71,14 +71,13 @@
                               </a>
                             <?php
                           }
-                        ?>
+                          ?>
                       </div>
                     </li>
                     <?php
-                }
-            ?>
-            <?php 
-
+                    }
+                  ?>
+                  <?php 
               }   
             }
           ?>

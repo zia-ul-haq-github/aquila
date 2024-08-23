@@ -8,15 +8,12 @@
 //  call the object here
  $menu_class = \AQUILA_THEME\Inc\Menus::get_instance();
 
-//  create a variable and call the function which argument is menu location 
+//  create a variable and call the function which argument is menu location means the id store in the varable
  $header_menu_id = $menu_class->get_menu_id('aquila-header-menu');
 
-//  we have a function where we can pass the menu id then it Retrieves all menu items.
+//  we have a function to Retrieves/get all menu items.
  $header_menus = wp_get_nav_menu_items($header_menu_id);
 
- echo '<pre>';
- print_r($header_menus);
- wp_die();
 ?>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -31,40 +28,67 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-      </li>
-    </ul>
+    <?php
+      /**
+       * Check the condition if not empty and is array exectue the loop and check menus in parent is not empty then call a function to
+       * get child items in the $child_menu_item variable
+      */
+      if( !empty($header_menus) && is_array($header_menus) ) {
+    ?>
+      <ul class="navbar-nav mr-auto">
+        <?php
+          foreach( $header_menus as $menu_item ) {
+              if(!$menu_item->menu_item_parent) {
+
+                $child_menu_item = $menu_class->get_child_menu_items($header_menus, $menu_item->ID);
+
+              // Want to check the menu has child or not we created a variable and check not empty and it has array then child items aviable in varable
+                $has_children = !empty($child_menu_item) && is_array($child_menu_item);
+
+              // Check if the variable does not have childern then show this type of structure 
+                if( ! $has_children) {
+                    ?>
+                    <!-- The values display by dynamic in my parent item -->
+                    <li class="nav-item">
+                      <a class="nav-link" href="<?php echo esc_url( $menu_item->url ); ?>">
+                        <?php echo esc_html( $menu_item->title) ; ?>
+                      </a>
+                    </li>
+                    <?php
+                } else {
+                    ?>
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="<?php echo esc_url( $menu_item->url ); ?>" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <?php echo esc_html( $menu_item->title) ; ?>
+                      </a>
+                      <!-- This is my child menus display their value by dynamic and using loop though because we alrady have chile menu item -->
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <?php
+                          foreach($child_menu_item as $child_menu_item) {
+                            ?>
+                              <a class="dropdown-item" href="<?php echo esc_url( $child_menu_item->url ); ?>">
+                              <?php echo esc_html( $child_menu_item->title) ; ?>
+                              </a>
+                            <?php
+                          }
+                        ?>
+                      </div>
+                    </li>
+                    <?php
+                }
+            ?>
+            <?php 
+
+              }   
+            }
+          ?>
+        </ul>
+        <?php
+      }
+    ?>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
   </div>
 </nav>
-<?php
-// Display the custom menu on the frontend
-  // wp_nav_menu(
-  //   [
-  //   'theme_location' => 'aquila-header-menu',
-  //   'container_class' => 'my_extra_menu_class',
-  //   ]
-  // );
-?>

@@ -14,9 +14,23 @@
    <main id="main" class="site-main mt-5" role="main">
       <?php
          if( have_posts() ) {
-            
             ?>
             <div class="container">
+               <?php
+               /**
+                * Display the page title using single_post_title()function
+                * first check the condiction is it home page and not a front page and call a function
+                */
+                  if( is_home() && !is_front_page()) {
+                     ?>
+                        <header class="mb-5">
+                           <h1 class="page-title screen-render-text">
+                              <?php single_post_title(); ?>
+                           </h1>
+                        </header>
+                     <?php
+                  }
+               ?>
                <?php
                while( have_posts() ) : the_post();
                   the_title();

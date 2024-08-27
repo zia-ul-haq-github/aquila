@@ -18,7 +18,9 @@ if ( ! defined( 'AQUILA_DIR_URI' ) ) {
 // print_r(AQULIA_DIR_PATH);
 // wp_die();
 
+//Include the files of autoloader.php and template-tags.php
 require_once AQUILA_DIR_PATH . '/inc/helpers/autoloader.php';
+require_once AQUILA_DIR_PATH . '/inc/helpers/template-tags.php';
 
 function aquila_get_theme_instance() {
    \AQUILA_THEME\Inc\AQUILA_THEME::get_instance();

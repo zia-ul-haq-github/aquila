@@ -16,7 +16,16 @@
             ?>
             <div class="entry-image mb-5">
                 <a href=" <?php echo esc_url( get_permalink() ); ?> ">
-                    
+                    <?php 
+                        the_post_custom_thumbnail(
+                            $the_post_id,
+                            'featured-large',
+                            [
+                                'sizes' => '(max-width: 590px) 590px, 425',
+                                'class' => 'attachment-featured-image size-featured-image'
+                            ]
+                        )
+                    ?>
                 </a>
             </div>
             <?php

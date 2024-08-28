@@ -28,7 +28,12 @@ class AQUILA_THEME {
 
     public function setup_theme() {
 
-        // using wp core function to allow the title tage and custom logo and their propaties etc
+        /**
+		 * By adding theme support, we declare that this theme does not use a
+		 * hard-coded <title> tag in the document head, and expect WordPress to
+		 * provide it for us.
+         * and also add custom logo and their propaties etc.
+		 */
         add_theme_support( 'title-tag' );
         add_theme_support( 'custom-logo', [
             'header-text'          => ['site-title', 'site-description'],
@@ -44,8 +49,18 @@ class AQUILA_THEME {
             'default-repeat'=> 'no-repeat',] 
         );
 
-    /** post thumbnail **/
+        /** Post Thumbnail add/Enable support for Post Thumbnails on posts and pages.
+		 *
+		 * Adding this will allow you to select the featured image on posts and pages.
+		 *
+		 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
+		 */
         add_theme_support( 'post-thumbnails' );
+
+        /**
+		 * Register image sizes.
+		 */
+        add_image_size('featured-thumbnail', 350, 263, true);
 
     /** refresh widgest **/
         add_theme_support( 'customize-selective-refersh-widgets' );

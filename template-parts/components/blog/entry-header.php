@@ -19,9 +19,9 @@
                     <?php 
                         the_post_custom_thumbnail(
                             $the_post_id,
-                            'featured-large',
+                            'featured-thumbnail', // Custom Name of the Image
                             [
-                                'sizes' => '(max-width: 590px) 590px, 425',
+                                'sizes' => '(max-width: 350px) 350px, 263',
                                 'class' => 'attachment-featured-image size-featured-image'
                             ]
                         )

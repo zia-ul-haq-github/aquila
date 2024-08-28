@@ -1,7 +1,7 @@
 <?php
 
 // This function is just retuen the thumbnail 
-function get_the_post_custom_thumbnail( $post_id, $size = 'featured-large', $additional_attributes = [] ) {
+function get_the_post_custom_thumbnail( $post_id, $size = 'featured-thumbnail', $additional_attributes = [] ) {
     $custom_thumbnail = '';
 
     // check if post id is equal to null then get the post id by function and store in variable
@@ -30,6 +30,6 @@ function get_the_post_custom_thumbnail( $post_id, $size = 'featured-large', $add
 
 
 // This function is echo the thumbnail means it will give me the thumbnail
-function the_post_custom_thumbnail( $post_id, $size = 'featured-large', $additional_attributes = [] ) {
+function the_post_custom_thumbnail( $post_id, $size = 'featured-thumbnail', $additional_attributes = [] ) {
     echo get_the_post_custom_thumbnail( $post_id, $size, $additional_attributes );
 }

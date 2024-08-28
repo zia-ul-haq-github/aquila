@@ -39,10 +39,21 @@ aquila_get_theme_instance();
 
     ** Register Styles */
    
-   
-   //  Enqueue the files
-   
  }
 
  add_action('wp_enqueue_scripts', 'aquila_enqueue_scripts');
+
+//  create a custom function for debug log
+ if (!function_exists('aquila_log')) {
+	function aquila_log ( $log )  {
+		if ( true === WP_DEBUG ) {
+			if ( is_array( $log ) || is_object( $log ) ) {
+				error_log( print_r( $log, true ) );
+			} else {
+				error_log( $log );
+			}
+		}
+	}
+}
+ 
  ?>

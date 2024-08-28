@@ -19,8 +19,14 @@
     }
 
     protected function setup_hooks() {
-        // Actions and Filters
+        
+        /**
+         * Action & Filter Hooks
+         * In first hook we Register Meta box for any post type.
+         * Second hook to use the save metabox when the post is save
+         */
         add_action('add_meta_boxes', [$this, 'add_custom_meta_box']);
+        add_action( 'save_post', [$this, 'save_post_meta_data'] );
     }
 
     /**
@@ -34,13 +40,14 @@
             add_meta_box(
                 'hide-page-title',                  // Unique ID
                 __( 'Hide Page Title', 'aquila' ),  // MetaBox title
-                [ $this, 'custom_meta_box_html' ],  // Content callback, must be of type callable
+                [ $this, 'custom_meta_box_html' ],  // Content callback, means hold the HTML for the meta box
                 $screen,                           // Post type
                 'side'                            // locations
             );
         }
     }
 
+    // This Callback function hold the HTML for the meta boxes
     public function custom_meta_box_html( $post) {
 
         // Get the post meta field for the given post ID.
@@ -49,7 +56,7 @@
         <label for="aquila_field"> 
             <?php esc_html_e('Hide the page title', 'aquila'); ?> 
         </label>
-        <select name="aquila_field" id="aquila_field" class="postbox">
+        <select name="aquila_hide_title_field" id="aquila_field" class="postbox">
             <option value="">
                 <?php esc_html_e('Select', 'aquila'); ?>
             </option>
@@ -61,6 +68,20 @@
             </option>
         </select>
         <?php
+    }
+
+    /**
+     * This Callback function save the metabox values in database.
+     * check if the key is exists in post array then use the update function
+     */
+    public function save_post_meta_data( $post_id ) {
+        if ( array_key_exists( 'aquila_hide_title_field', $_POST ) ) {
+            update_post_meta(
+                $post_id,
+                '_hide-page-title',
+                $_POST['aquila_hide_title_field']
+            );
+        }
     }
 
  }

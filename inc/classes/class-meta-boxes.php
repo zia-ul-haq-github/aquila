@@ -52,6 +52,13 @@
 
         // Get the post meta field for the given post ID.
         $value = get_post_meta( $post->ID, '_hide-page-title', true );
+
+        /**
+         * Use nonus for verification
+         * The form is here that's why we created nonce here!
+         */
+        wp_nonce_field(plugin_basename(__FILE__), 'hide_title_meta_box_nonus_name');
+
         ?>
         <label for="aquila_field"> 
             <?php esc_html_e('Hide the page title', 'aquila'); ?> 
@@ -70,11 +77,26 @@
         <?php
     }
 
-    /**
-     * This Callback function save the metabox values in database.
-     * check if the key is exists in post array then use the update function
-     */
+    
+    //This Callback function save the metabox values in database.
+     
     public function save_post_meta_data( $post_id ) {
+        /**
+         * Check the nonce Processing here because it check the vaules before saving into db.
+         * When the posted is saved & updated we get $_post available and check if the current user is authrozied or not.
+         */
+        if( ! current_user_can( 'edit_post', $post_id )) {
+            return;
+        }
+
+        /**
+         * Check if the nonus value we received is the same we created.
+         */
+        if( ! isset( $_POST['hide_title_meta_box_nonce_name'] ) || ! wp_verify_nonce( $_POST['hide_title_meta_box_nonce_name'], plugin_basename(__FILE__) ) ) {
+            return;
+        }
+
+        // check if the key is exists in post array then use the update function
         if ( array_key_exists( 'aquila_hide_title_field', $_POST ) ) {
             update_post_meta(
                 $post_id,

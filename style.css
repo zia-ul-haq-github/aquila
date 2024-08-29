@@ -19,3 +19,8 @@
     width: 100%;
     height: auto;
  }
+
+ /* CSS for Entry-meta  we hide the updated date on post*/
+ .updated:not(.published) {
+   display: none;
+ }

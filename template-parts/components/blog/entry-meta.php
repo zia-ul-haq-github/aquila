@@ -6,7 +6,12 @@
  */
 ?>
 
-<!-- inside of dive we call the function to display the post created and modifiy time and date -->
 <div class="entry-meta mb-3">
-    <?php aquila_posted_on(); ?>
+    <?php 
+        //call the function to display the post created and modifiy time and date
+        aquila_posted_on(); 
+
+        // call function to display the author name on blog post
+        aquila_posted_by(); 
+    ?>
 </div>

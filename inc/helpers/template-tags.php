@@ -74,3 +74,23 @@ function aquila_posted_by() {
 
     echo '<span class="byline text-secondary">'.$byline.'</span>';
 }
+
+// Display the excerpt on the blog post and customize the excerpt
+function aquila_the_excerpt( $trim_character_count = 0 ) {
+
+    // Check if it has not excerpt or trim variable equll to 0 then display the excerpt and return it.
+    if( ! has_excerpt() || 0 === $trim_character_count) {
+        the_excerpt();
+        return;
+    }
+
+    //Get the excerpt and remove the script and style tag from excerpt by function then store in the variable.
+    $excerpt = wp_strip_all_tags( get_the_excerpt() );
+
+    // Return the string after extract from specifice position means stating poistion is 0 and end is vaariable.
+    $excerpt = substr( $excerpt, 0, $trim_character_count );
+
+    // The excerpt string again equll to 0 and string position is from the excerpt where there is empty space.
+    $excerpt = substr( $excerpt, 0, strrpos( $excerpt, ''));
+    echo $excerpt . '[...]';
+}

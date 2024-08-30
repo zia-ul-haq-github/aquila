@@ -1,6 +1,6 @@
 <?php
 /**
- * Content Template This template render all of the content
+ * Content Template This template render all of the given file
  * 
  * @package aquila
  */

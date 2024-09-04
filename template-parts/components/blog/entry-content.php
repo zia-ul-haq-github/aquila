@@ -33,6 +33,7 @@
             );
         } else{
             aquila_the_excerpt(200);   // Call the function
+            echo aquila_excerpt_more(); // echo function
         }
     ?>
 </div>

@@ -94,3 +94,18 @@ function aquila_the_excerpt( $trim_character_count = 0 ) {
     $excerpt = substr( $excerpt, 0, strrpos( $excerpt, ''));
     echo $excerpt . '[...]';
 }
+
+// Display the Read More text inside the button for excerpt
+function aquila_excerpt_more ( $more = '' ) {
+
+    // if user is not on the single page and $more variable is empty then return the read more text with permalink
+    if( ! is_single() ) {
+        $more = sprintf(
+            '<button class= " mt-4 btn btn-info"><a class="aquila-read-more text-white" href="%1$s">%2$s</a></button>',
+            get_permalink( get_the_ID() ),
+            __('Read more', 'aquila')
+        );
+    }
+
+    return $more;
+}
